@@ -47,10 +47,6 @@ router.get('', async(req, res) => {
 
 
 
-router.get('/about', (req, res) => {
-    res.render('about');
-});
-
 
 
 /**
@@ -59,22 +55,60 @@ router.get('/about', (req, res) => {
  */
 
 
+
+// -------------------Code Review ------------------
+
+// router.get('/post/:id', async (req, res) => {
+//     try {
+//         const locals = {
+//             title: 'GSCC Processes',
+//             description: 'The complete guide to processes'
+//         }
+
+//         let slug = req.params.id;
+
+//         const data = await Post.findById({ _id: slug  });
+//         res.render('index', { locals, data });
+
+//     } catch (error) {
+//         console.log(error)
+//     }
+// })
+// ----------------------------------------------------------------
+
+
 router.get('/post/:id', async (req, res) => {
     try {
-        const locals = {
-            title: 'GSCC Processes',
-            description: 'The complete guide to processes'
-        }
-
-        let slug = req.params.id;
-
-        const data = await Post.findById({ _id: slug  });
-        res.render('index', { locals, data });
-
+      let slug = req.params.id;
+  
+      const data = await Post.findById({ _id: slug });
+  
+      const locals = {
+        title: 'GSCC Processes',
+        description: 'The complete guide to processes'
+      }
+  
+      res.render('post', { 
+        locals,
+        data,
+        currentRoute: `/post/${slug}`
+      });
     } catch (error) {
-        console.log(error)
+      console.log(error);
     }
-})
+  
+  });
+
+
+
+
+
+
+
+
+router.get('/about', (req, res) => {
+    res.render('about');
+});
 
 
 
