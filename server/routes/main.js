@@ -2,14 +2,11 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
 
-
-
 /**
  * GET
  * HOME
  */
 
-//Routes
 router.get('', async(req, res) => {
 
     try {
@@ -30,7 +27,6 @@ router.get('', async(req, res) => {
         const nextPage = parseInt(page) + 1;
         const hasNextPage = nextPage <= Math.ceil(count / perPage);
 
-        // const data = await Post.find();
         res.render('index', { 
             locals, 
             data,
@@ -43,39 +39,10 @@ router.get('', async(req, res) => {
 });
 
 
-
-
-
-
-
-
 /**
  * GET
  * Post: id
  */
-
-
-
-// -------------------Code Review ------------------
-
-// router.get('/post/:id', async (req, res) => {
-//     try {
-//         const locals = {
-//             title: 'GSCC Processes',
-//             description: 'The complete guide to processes'
-//         }
-
-//         let slug = req.params.id;
-
-//         const data = await Post.findById({ _id: slug  });
-//         res.render('index', { locals, data });
-
-//     } catch (error) {
-//         console.log(error)
-//     }
-// })
-// ----------------------------------------------------------------
-
 
 router.get('/post/:id', async (req, res) => {
     try {
@@ -84,7 +51,7 @@ router.get('/post/:id', async (req, res) => {
       const data = await Post.findById({ _id: slug });
   
       const locals = {
-        title: 'GSCC Processes',
+        title: data.title,
         description: 'The complete guide to processes'
       }
   
@@ -99,19 +66,37 @@ router.get('/post/:id', async (req, res) => {
   
   });
 
+/**
+ * POST
+ * Post - searchTerm
+ */
+router.post('/search', async (req, res) => {
+  try {
+    const locals = {
+      title: 'The-SOP Search',
+      description: "Try and search something.."
+    }
+
+    let searchTerm = req.body.searchTerm;
+
+    console.log(searchTerm)
+    // const data = await Post.find();
+    res.send(searchTerm);
+    // res.render('search', { locals, data });
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 
-
-
-
-
+/**
+ * GET
+ * ABOUT
+ */
 
 router.get('/about', (req, res) => {
     res.render('about');
 });
-
-
-
 
 
 module.exports = router;
