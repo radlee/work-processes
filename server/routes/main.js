@@ -106,5 +106,25 @@ router.get('/about', (req, res) => {
     res.render('about');
 });
 
+/**
+ * Copy - Template - Reference
+ */
+
+// router.post('/search', async (req, res) => {
+//   try {
+//     const locals = {
+//       title: 'The-SOP Search',
+//       description: "Try and search something.."
+//     }
+
+//     res.render("search", {
+//       data,
+//       locals
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
+
 
 module.exports = router;
