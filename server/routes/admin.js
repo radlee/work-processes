@@ -151,7 +151,58 @@ router.get('/admin', async (req, res) => {
     } catch (error) {
       console.log(error);
     }
+  });
+
+
+  /**
+ * GET
+ * Admin - Create New Post/Process  
+ */
+
+    router.get('/edit-post/:id',authMiddleware, async (req, res) => {
+      try {
+
+        const locals = {
+          title: 'Edit a Process',
+          description: 'Make Updated Changes to the process'
+        }
+
+        const data = await Post.findOne({ _id: req.params.id })
+  
+        res.render('admin/edit-post', {
+          locals,
+          data,
+          layout: adminLayout
+        });
+  
+      } catch (error) {
+        console.log(error);
+      }
+    })
+
+    
+
+  
+  /**
+ * PUT
+ * Admin - Create New Post/Process  
+ */
+
+  router.put('/edit-post/:id',authMiddleware, async (req, res) => {
+    try {
+      await Post.findByIdAndUpdate(re.params.id, {
+        title: req.body.body,
+        body: req.bofy.body,
+        updatedAt: Date.now()
+      });
+
+      res.redirect(`/edit-post/${req.params.id}`);
+
+    } catch (error) {
+      console.log(error);
+    }
   })
+
 
 
   /**
