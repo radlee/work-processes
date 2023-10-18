@@ -190,9 +190,9 @@ router.get('/admin', async (req, res) => {
 
   router.put('/edit-post/:id',authMiddleware, async (req, res) => {
     try {
-      await Post.findByIdAndUpdate(re.params.id, {
-        title: req.body.body,
-        body: req.bofy.body,
+      await Post.findByIdAndUpdate(req.params.id, {
+        title: req.body.title,
+        body: req.body.body,
         updatedAt: Date.now()
       });
 
