@@ -34,6 +34,30 @@ const authMiddleware = (req, res, next) => {
   }
 }
 
+  /**
+ * GET
+ * Admin - Register Page
+ */
+
+router.get('/register', async (req, res) => {
+    try {
+      const locals = {
+        title: 'Admin',
+        description: "Learning and Development Admin"
+      }
+  
+      res.render("admin/register", { locals, layout: adminLayout });
+
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
+  /**
+ * GET
+ * Admin - Login Page
+ */
+
 router.get('/admin', async (req, res) => {
     try {
       const locals = {
