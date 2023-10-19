@@ -11,7 +11,7 @@ router.get('', async(req, res) => {
 
     try {
         const locals = {
-            title: 'GSSC Processes Blog',
+            title: 'GSSC Processes',
             description: 'Call Centre Processes Simplified'
         }
 
