@@ -4,13 +4,20 @@
     <h2>Add New Process</h2>
 </div>
 
+  <script src="/js/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script>
+
 <form action="/add-post" method="POST">
 
     <label for="title"><b>Title</b></label>
     <input type="text" placeholder="Post Title" name="title">
 
     <label for="body"><b>Content</b></label>
-    <textarea name="body" cols="50" rows="10"></textarea>
+    <textarea id="mytextarea" name="body" cols="50" rows="10"></textarea>
 
     <input type="submit" value="Add" class="btn">
 
