@@ -74,7 +74,7 @@ router.get('/post/:id', async (req, res) => {
 router.post('/search', async (req, res) => {
   try {
     const locals = {
-      title: 'The-SOP Search',
+      title: 'Process Search',
       description: "Try and search something.."
     }
 
