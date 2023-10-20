@@ -4,6 +4,20 @@ const Post = require('../models/Post');
 
 /**
  * GET
+ * Admin - Kiosks List
+ */
+router.get('/active-kiosks', (req, res) => {
+
+    res.render('active-kiosks', { currentRoute: '/active-kiosks'});
+ 
+});
+
+router.get('/about', (req, res) => {
+  res.render('about', { currentRoute: '/about'});
+});
+
+/**
+ * GET
  * HOME
  */
 
@@ -107,26 +121,6 @@ router.post('/search', async (req, res) => {
 router.get('/about', (req, res) => {
     res.render('about', { currentRoute: '/about'});
 });
-
-/**
- * Copy - Template - Reference
- */
-
-// router.post('/search', async (req, res) => {
-//   try {
-//     const locals = {
-//       title: 'The-SOP Search',
-//       description: "Try and search something.."
-//     }
-
-//     res.render("search", {
-//       data,
-//       locals
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
 
 
 module.exports = router;

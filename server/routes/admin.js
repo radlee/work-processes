@@ -10,8 +10,22 @@ const jwtSecret = process.env.JWT_SECRET;
 
 /**
  * GET
- * Admin - Login Page
+ * Admin - Kiosks
  */
+router.get('/manage-kiosks', async (req, res) => {
+  try {
+    const locals = {
+      title: 'Admin - Kiosks Update',
+      description: "Learning and Development Admin"
+    }
+
+    res.render("admin/manage-kiosks", { locals, layout: adminLayout });
+
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 
 /**
  * GET
