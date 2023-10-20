@@ -12,7 +12,7 @@ router.get('', async(req, res) => {
     try {
         const locals = {
             title: 'Flash Call Centre Processes',
-            description: 'Call Centre Processes Simplified'
+            description: 'Find relevant information related to all Centre Processes and Queries Here'
         }
 
         let perPage = 10;
