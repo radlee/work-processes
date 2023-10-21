@@ -12,6 +12,8 @@ router.get('/active-kiosks', (req, res) => {
  
 });
 
+
+
 router.get('/about', (req, res) => {
   res.render('about', { currentRoute: '/about'});
 });

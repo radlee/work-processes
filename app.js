@@ -7,10 +7,30 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 
+const multer = require('multer');
+
+const upload = multer({ dest: 'uploads/' });
+
 const connectDB = require('./server/config/db');
 const { isActiveRoute } = require('./server/helpers/routeHelpers');
 
 const app = express();
+
+app.post('/upload-file', upload.single('upload'), (req, res) => {
+    const file = req.file;
+
+    if (!file) {
+        return res.status(400).json({ error: 'No file uploaded' });
+      }
+      const fileURL = `/uploads/${file.filename}`;
+
+      res.json({ url: fileURL });
+      
+    // Handle the file (e.g., store it, return a URL).
+    // Send a response, e.g., JSON with the file URL.
+  });
+
+
 const PORT = 5000 || process.env.PORT;
 
 
