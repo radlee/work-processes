@@ -183,7 +183,7 @@ router.get('/admin', async (req, res) => {
         res.redirect('/dashboard');
 
       } catch (error) {
-       console.lg(error) 
+       console.log(error) 
       }
 
     } catch (error) {
