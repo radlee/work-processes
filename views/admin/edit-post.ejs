@@ -1,5 +1,5 @@
 <a href="/dashboard">&larr; Back To Processes</a>
-
+<script src="/public/ckeditor/ckeditor.js"></script>
 <div class="admin-title">
     <h2>View / Edit Process</h2>
 </div>
@@ -14,8 +14,21 @@
     <input type="text" placeholder="Post Title" name="title" value="<%= data.title %>">
 
     <label for="body"><b>Content</b></label>
-    <textarea name="body" cols="50" rows="10"><%- data.body %></textarea>
+    <textarea id="editor" name="body" cols="50" rows="10"><%- data.body %></textarea>
 
     <input type="submit" value="Update" class="btn">
 
 </form>
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ), {
+          ckfinder: {
+          // CKFinder configuration options
+          uploadUrl: '/upload-file' // Set the URL to your Express.js route
+        }
+        } )
+        .catch( error => {
+            console.error( error );
+        } );
+  </script>
