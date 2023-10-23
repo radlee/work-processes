@@ -1,3 +1,4 @@
+
 <div class="author">
     <!-- <h1 class="author_heading">Standard Operating Procedures</h1> -->
     <h1 class="author_heading">Find all the important Call Centre Processes and Information.</h1>
@@ -17,7 +18,7 @@
             <li>
                  <a href="/post/<%= post._id %>">
                      <span><%= post.title %></span>
-                     <span class="article-list__date"><%= post.createdAt.toDateString() %></span>
+                     <span class="article-list__date"><%= moment(post.createdAt).format('MMMM Do YYYY, h:mm:ss a') %></span>
                  </a>
             </li>
         <% }) %>
