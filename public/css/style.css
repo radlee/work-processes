@@ -343,6 +343,15 @@ img {
   display: inline-block;
 }
 
+.pagination-right {
+  font-size: 1.3rem;
+  color: var(--gray);
+  float: right;
+  text-decoration: none;
+  margin-top: 40px;
+  display:block;
+}
+
 .pagination:hover {
   color: var(--black);
 }
