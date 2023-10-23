@@ -6,6 +6,8 @@ const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+var moment = require('moment');
+
 
 const multer = require('multer');
 
@@ -15,6 +17,7 @@ const connectDB = require('./server/config/db');
 const { isActiveRoute } = require('./server/helpers/routeHelpers');
 
 const app = express();
+app.locals.moment = require('moment');
 
 app.post('/upload-file', upload.single('upload'), (req, res) => {
     const file = req.file;
@@ -25,7 +28,7 @@ app.post('/upload-file', upload.single('upload'), (req, res) => {
       const fileURL = `/uploads/${file.filename}`;
 
       res.json({ url: fileURL });
-      
+
     // Handle the file (e.g., store it, return a URL).
     // Send a response, e.g., JSON with the file URL.
   });
