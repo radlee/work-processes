@@ -18,7 +18,7 @@
             <li>
                  <a href="/post/<%= post._id %>">
                      <span><%= post.title %></span>
-                     <span class="article-list__date"><%= moment(post.createdAt).format('Do MMMM YYYY, h:mm:ss a') %></span>
+                     <span class="article-list__date"><%= moment(post.createdAt).format('Do MMMM YYYY - HH:mm:ss') %></span>
                  </a>
             </li>
         <% }) %>
