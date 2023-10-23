@@ -11,6 +11,9 @@ const PostSchema = new Schema({
         type: String,
         required: true
     },
+    image: {
+        type: String,  // Store the URL to the uploaded image
+    },
     createdAt: {
         type: Date,
         default: Date.now
