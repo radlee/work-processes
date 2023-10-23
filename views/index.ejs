@@ -2,7 +2,7 @@
 <div class="author">
     <!-- <h1 class="author_heading">Standard Operating Procedures</h1> -->
     <h1 class="author_heading">Find all the important Call Centre Processes and Information.</h1>
-    <p class="author__body"><em>Eezi and Fast</em> way to get updated.</p>
+    <p class="author__body"><em>Eezi and Fast</em> way to get the latest Call Centre Updates.</p>
 </div>
 
 <img src="/img/hero-image.webp" alt="gscc" class="hero-image" width="981" height="528">
@@ -18,7 +18,7 @@
             <li>
                  <a href="/post/<%= post._id %>">
                      <span><%= post.title %></span>
-                     <span class="article-list__date"><%= moment(post.createdAt).format('MMMM Do YYYY, h:mm:ss a') %></span>
+                     <span class="article-list__date"><%= moment(post.createdAt).format('Do MMMM YYYY, h:mm:ss a') %></span>
                  </a>
             </li>
         <% }) %>
@@ -27,6 +27,10 @@
 
     <% if ( nextPage !== null ) { %> 
         <a href='/?page=<%= nextPage %>' class='pagination'>&lt; View Older Posts</a>
+    <% } %>
+
+    <% if (current > 1) { %>
+        <a href="/?page=<%= current - 1 %>" class="pagination pagination-right">View Newer Posts &gt;</a>
     <% } %>
 
 </section>
