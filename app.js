@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const bodyparser = require('body-parser');
 const expressLayout = require('express-ejs-layouts');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
@@ -8,7 +9,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 var moment = require('moment');
 const { v4: uuidv4 } = require('uuid'); // Import UUID generator
-
+const path = require('path');
 
 const multer = require('multer');
 
@@ -25,6 +26,8 @@ const PORT = 5000 || process.env.PORT;
 
 //Connect to DB
 connectDB();
+app.use(bodyparser.json({limit: '50mb'}));
+app.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -48,6 +51,10 @@ app.set('layout', './layouts/main');
 app.set('view engine', 'ejs');
 
 app.locals.isActiveRoute = isActiveRoute;
+
+// Serve static files from the 'uploads' directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 
 app.use('/', require('./server/routes/main'));
 app.use('/', require('./server/routes/admin'));
