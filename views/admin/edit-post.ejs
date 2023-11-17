@@ -12,8 +12,11 @@
 
     <label for="title"><b>Title</b></label>
     <input type="text" placeholder="Post Title" name="title" value="<%= data.title %>">
+    
+    <input type="hidden" id="quill-content" name="body">
 
     <label for="body"><b>Content</b></label>
+
     <div id="editor-container" name="body" ><%- data.body %></div>
 
     <input type="submit" value="Update" class="btn">
@@ -21,43 +24,53 @@
 </form>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-  
+  document.addEventListener("DOMContentLoaded", function () {
       var toolbarOptions = [
-    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-    ['blockquote', 'code-block', 'image'],
-  
-    [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-    [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-    [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-    [{ 'direction': 'rtl' }],                         // text direction
-  
-    [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-  
-    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-    [{ 'font': [] }],
-    [{ 'align': [] }],
-  
-    ['clean']                                         // remove formatting button
-  ];
-  
-  
+          ['bold', 'italic', 'underline', 'strike'],
+          ['blockquote', 'code-block', 'image'],
+          [{ 'header': 1 }, { 'header': 2 }],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+          [{ 'script': 'sub'}, { 'script': 'super' }],
+          [{ 'indent': '-1'}, { 'indent': '+1' }],
+          [{ 'direction': 'rtl' }],
+          [{ 'size': ['small', false, 'large', 'huge'] }],
+          [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+          [{ 'color': [] }, { 'background': [] }],
+          [{ 'font': [] }],
+          [{ 'align': [] }],
+          ['clean']
+      ];
+
       var quill = new Quill('#editor-container', {
-        modules: {
-          toolbar: toolbarOptions
-        },
-        placeholder: 'Compose an epic...',
-        theme: 'snow'  // or 'bubble'
+          modules: {
+              toolbar: toolbarOptions
+          },
+          placeholder: 'Compose an epic...',
+          theme: 'snow'
       });
-  
+
+
       var form = document.querySelector('form');
-      var quillContentInput = document.getElementById('quill-content');
-  
-      form.addEventListener('submit', function() {
-        var editorContent = document.querySelector('.ql-editor').innerHTML;
-        quillContentInput.value = editorContent;
+      var hiddenInput = document.querySelector('input[name="body"]');
+
+      // Initialize hidden input with the initial content
+      hiddenInput.value = quill.root.innerHTML;
+
+      // Listen to the text-change event to update the hidden input
+      quill.on('text-change', function () {
+          var editorContent = quill.root.innerHTML;
+          hiddenInput.value = editorContent;
+          console.log("Quill content changed:", editorContent);
       });
-    });
-  </script>
+
+      form.onsubmit = function () {
+          // For debugging purposes
+          console.log("Quill content before submit:", hiddenInput.value);
+
+          // Add any additional logic here if needed before submitting the form
+
+          return true; // Change to true to allow the form submission
+      };
+
+  });
+</script>
