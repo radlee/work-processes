@@ -21,7 +21,7 @@ const { isActiveRoute } = require('./server/helpers/routeHelpers');
 const app = express();
 app.locals.moment = require('moment');
 
-const PORT = 5000 || process.env.PORT;
+const PORT = 5700 || process.env.PORT;
 
 
 //Connect to DB
