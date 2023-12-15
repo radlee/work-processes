@@ -130,7 +130,7 @@ router.get('/admin', async (req, res) => {
         description: 'Manage all the Call Centre Process'
       }
 
-      const data = await Post.find();
+      const data = await Post.find().sort({ createdAt: 1 });
       res.render('admin/dashboard', {
         locals,
         data,
